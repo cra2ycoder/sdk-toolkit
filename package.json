@@ -1,0 +1,30 @@
+{
+  "name": "sdk-toolkit",
+  "version": "1.0.0",
+  "description": "sdk build system",
+  "main": "index.js",
+  "private": "true",
+  "workspaces": [
+    "packages/*",
+    "sdk/*"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "typescript": "4.5.4",
+    "lerna": "4.0.0"
+  },
+  "devDependencies": {
+    "prettier": "2.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://cra2ycoder@github.com/cra2ycoder/sdk-toolkit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cra2ycoder/sdk-toolkit/issues"
+  },
+  "homepage": "https://github.com/cra2ycoder/sdk-toolkit#readme"
+}
