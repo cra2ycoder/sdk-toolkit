@@ -1,0 +1,25 @@
+# OSX
+*.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.next
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.lnk
+
+# Debug log from npm
+npm-debug.log
+
+*.map
+*.log
+
+# workspace specific
+dist/
+build/
+output/
+libs/
+node_modules
