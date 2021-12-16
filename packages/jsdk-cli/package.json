@@ -1,0 +1,22 @@
+{
+  "name": "jsdk-cli",
+  "version": "1.0.0",
+  "description": "JSDK cli commands",
+  "main": "./src/index.js",
+  "bin": {
+    "jsdk": "./bin/cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {},
+  "dependencies": {
+    "arg": "4.1.3",
+    "chalk": "4.1.0",
+    "inquirer": "7.2.0",
+    "ora": "4.0.4",
+    "boxen": "4.2.0",
+    "@xb/node-utils": "1.0.0"
+  },
+  "devDependencies": {}
+}
