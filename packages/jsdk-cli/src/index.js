@@ -1,23 +1,7 @@
 const arg = require('arg')
 const { printHelpLog, printErrorLog, printExampleLog } = require('./console')
 const { bundleNow } = require('./bundle')
-
-const commands = {
-  // main commands
-  '--help': Boolean,
-  '--examples': Boolean,
-  '--create': Boolean,
-  '--bundle': Boolean,
-  // '--zip': Boolean,
-  '--path': String,
-  '--yes': Boolean,
-
-  // alias
-  '-c': '--create',
-  '-b': '--bundle',
-  // '-z': '--zip',
-  '-y': '--yes',
-}
+const { COMMANDS } = require('./config')
 
 const getTaskFor = value => {
   let [name, inputs] = value ? value.split('=').filter(Boolean) : ['', '']
@@ -49,7 +33,7 @@ const getTaskType = args => {
 }
 
 const parseArgs = rawArgs => {
-  const opt = arg(commands, {
+  const opt = arg(COMMANDS, {
     argv: rawArgs.slice(2),
   })
 

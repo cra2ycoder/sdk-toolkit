@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 const boxen = require('boxen')
-const { MAIN_TITLE, DESC, HELP, COMMANDS } = require('./config')
+const { MAIN_TITLE, DESC, HELP, SCRIPTS } = require('./config')
 
 const printHelpLog = () => {
   let logs = ` ${chalk.blue.inverse(MAIN_TITLE)}\n${chalk.red(DESC)}\n\n`
@@ -36,7 +36,7 @@ const printExampleLog = (taskType, errorMsg = '') => {
 
   const getMsg = () => {
     let cmdString = ``
-    Object.entries(COMMANDS).forEach(data => {
+    Object.entries(SCRIPTS).forEach(data => {
       const [, commandList = []] = data
 
       commandList.forEach(({ title, list }) => {

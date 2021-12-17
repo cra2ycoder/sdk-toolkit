@@ -8,6 +8,23 @@ const HELP = [
 ]
 
 const COMMANDS = {
+  // main commands
+  '--help': Boolean,
+  '--examples': Boolean,
+  '--create': Boolean,
+  '--bundle': Boolean,
+  // '--zip': Boolean,
+  '--path': String,
+  '--yes': Boolean,
+
+  // alias
+  '-c': '--create',
+  '-b': '--bundle',
+  // '-z': '--zip',
+  '-y': '--yes',
+}
+
+const SCRIPTS = {
   compile: [
     {
       title: 'compile commands',
@@ -35,4 +52,5 @@ module.exports = {
   DESC,
   HELP,
   COMMANDS,
+  SCRIPTS,
 }
