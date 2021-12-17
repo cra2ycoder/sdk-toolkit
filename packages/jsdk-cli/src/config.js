@@ -11,17 +11,18 @@ const COMMANDS = {
   // main commands
   '--help': Boolean,
   '--examples': Boolean,
-  '--create': Boolean,
+  '--compile': Boolean,
   '--bundle': Boolean,
-  // '--zip': Boolean,
-  '--path': String,
-  '--yes': Boolean,
+}
 
+const ALIAS = {
   // alias
-  '-c': '--create',
+  '-c': '--compile',
   '-b': '--bundle',
-  // '-z': '--zip',
-  '-y': '--yes',
+}
+
+const PARAMS = {
+  '--path': String,
 }
 
 const SCRIPTS = {
@@ -53,4 +54,6 @@ module.exports = {
   HELP,
   COMMANDS,
   SCRIPTS,
+  PARAMS,
+  ALIAS,
 }

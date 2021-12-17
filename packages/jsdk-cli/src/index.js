@@ -1,7 +1,7 @@
 const arg = require('arg')
 const { printHelpLog, printErrorLog, printExampleLog } = require('./console')
 const { bundleNow } = require('./bundle')
-const { COMMANDS } = require('./config')
+const { COMMANDS, ALIAS, PARAMS } = require('./config')
 
 const getTaskFor = value => {
   let [name, inputs] = value ? value.split('=').filter(Boolean) : ['', '']
@@ -17,18 +17,10 @@ const getTaskFor = value => {
 }
 
 const getTaskType = args => {
-  if (args['--help']) {
-    return 'help'
+  const [, cmd] = Object.keys(args) || []
+  if (args[cmd]) {
+    return cmd.replace('--', '')
   }
-
-  if (args['--examples']) {
-    return 'examples'
-  }
-
-  if (args['--bundle']) {
-    return 'bundle'
-  }
-
   return ''
 }
 
@@ -37,7 +29,7 @@ const parseArgs = rawArgs => {
     argv: rawArgs.slice(2),
   })
 
-  console.log({ opt })
+  // console.log({ opt })
 
   return {
     skipPrompt: opt['--yes'] || false,
@@ -48,6 +40,7 @@ const parseArgs = rawArgs => {
 }
 
 const options = parseArgs(process.argv)
+
 const {
   skipPrompt = false,
   task = '',
