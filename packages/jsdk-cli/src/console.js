@@ -36,11 +36,12 @@ const printExampleLog = (taskType, errorMsg = '') => {
 
   const getMsg = () => {
     let cmdString = ``
-    Object.entries(SCRIPTS).forEach(data => {
-      const [, commandList = []] = data
 
-      commandList.forEach(({ title, list }) => {
+    const collectCommands = item => {
+      item.forEach(x => {
+        const { title, list } = x
         cmdString += chalk.grey(`## ${title}\n`)
+
         cmdString += list
           .map(cmd => {
             const [cli, action, ...params] = cmd.split(' ')
@@ -49,9 +50,20 @@ const printExampleLog = (taskType, errorMsg = '') => {
             )} ${chalk.green(params.join(' '))}\n`
           })
           .join('')
+
         cmdString += `\n`
       })
-    })
+    }
+
+    if (taskType && taskType !== 'all') {
+      collectCommands(SCRIPTS[taskType])
+    } else {
+      Object.entries(SCRIPTS).forEach(data => {
+        const [, commandList = []] = data
+        collectCommands(commandList)
+      })
+    }
+
     return cmdString
   }
 
