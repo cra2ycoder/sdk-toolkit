@@ -1,7 +1,8 @@
 const arg = require('arg')
+const { COMMANDS, ALIAS, PARAMS } = require('./config')
 const { printHelpLog, printErrorLog, printExampleLog } = require('./console')
 const { bundleNow } = require('./bundle')
-const { COMMANDS, ALIAS, PARAMS } = require('./config')
+const { compileNow } = require('./compile')
 
 const getTaskFor = value => {
   let [name, inputs] = value ? value.split('=').filter(Boolean) : ['', '']
@@ -61,12 +62,16 @@ const validate = () => {
   return true
 }
 
-console.log({ options })
+// console.log({ options })
 
 if (task === 'help' || task === '') {
   printHelpLog()
 } else if (task === 'examples') {
   printExampleLog(taskFor || 'all')
+} else if (task === 'compile') {
+  if (validate() === true) {
+    compileNow(options)
+  }
 } else if (task === 'bundle') {
   if (validate() === true) {
     bundleNow(options)
