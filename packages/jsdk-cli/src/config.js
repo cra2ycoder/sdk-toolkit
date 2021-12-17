@@ -46,6 +46,17 @@ const SCRIPTS = {
       ],
     },
   ],
+  bundle: [
+    {
+      title: 'bundle commands',
+      list: [
+        `jsdk --bundle file=<FILE_NAME>`,
+        `jsdk --b file=<FILE_NAME>`,
+        `jsdk --bundle folder=<FOLDER_NAME>`,
+        `jsdk --b folder=<FOLDER_NAME>`,
+      ],
+    },
+  ],
 }
 
 module.exports = {
