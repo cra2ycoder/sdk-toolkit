@@ -3,22 +3,12 @@ const boxen = require('boxen')
 
 const printHelpLog = () => {
   const logs = ` 
-    ${chalk.blue.inverse(`<< Experience Builder >>`)}
-    ${chalk.red(`A modern way to build websites.`)}
-
+    ${chalk.blue.inverse('<< JSDK Compiler >>')}
+    ${chalk.red('A modern way to compile jsdk.')}
     ${chalk.dim('--help')}  : ${chalk.green('shows help')}
-    ${chalk.dim('--create')}: ${chalk.green(
-    'helps to create widgets/project/component'
-  )}
-    ${chalk.dim('--bundle')}: ${chalk.green(
-    'helps to bundle the packages/widgets/jsdk'
-  )}
-    ${chalk.dim('--path')}  : ${chalk.green(
-    'sets path for project/widget/package'
-  )}
-    ${chalk.dim('--zip')}   : ${chalk.green(
-    'bundle & zips the packages/widgets'
-  )}`
+    ${chalk.dim('--compile')}: ${chalk.green('helps to compile file into jsdk')}
+    ${chalk.dim('--examples')}: ${chalk.green('shows sample commands')}
+  `
 
   const view = boxen(logs, {
     borderColor: 'grey',
@@ -30,9 +20,9 @@ const printHelpLog = () => {
 
 const printErrorLog = msg => {
   const logs = ` 
-    ${chalk.blue.inverse(`<< Error Found: >>`)}
+    ${chalk.blue.inverse('<< Error Found: >>')}
     ${chalk.red(msg)}
-    `
+  `
   const view = boxen(logs, {
     borderColor: 'red',
     padding: 1,
@@ -42,69 +32,60 @@ const printErrorLog = msg => {
 }
 
 const printExampleLog = (taskType, errorMsg = '') => {
-  const logs = ` 
-    ${chalk.blue.inverse(`<< Experience Builder >>`)}
-    ${chalk.red(errorMsg)}
-  `
-  const examples = {
-    create: `
-    ${chalk.grey(`## create commands`)}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--create')} ${chalk.green(
-      'widget=WidgetName'
-    )}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--create')} ${chalk.green(
-      'project=ProjectName'
-    )}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--create')} ${chalk.green(
-      'component=ComponentName'
-    )}
-    `,
-    zip: `
-    ${chalk.grey(`## bundling & zipping commands`)}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--zip')} ${chalk.green(
-      'widgets'
-    )}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--zip')} ${chalk.green(
-      'widgets=WidgetName'
-    )}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--zip')} ${chalk.green(
-      'widgets=WidgetName1,WidgetName2'
-    )}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--zip')} ${chalk.green(
-      'widgets'
-    )} ${chalk.whiteBright('--path=./xyz/abc')}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--zip')} ${chalk.green(
-      'packages'
-    )}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--zip')} ${chalk.green(
-      'packages=exblibs'
-    )}
-    `,
-    bundle: `
-    ${chalk.grey(`## bundling commands`)}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--bundle')} ${chalk.green(
-      'jsdk=ComponentView'
-    )}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--bundle')} ${chalk.green(
-      'widget=WidgetName'
-    )}
-    ${chalk.yellow('xb')} ${chalk.whiteBright('--bundle')} ${chalk.green(
-      'packages=PackageName'
-    )}
-   `,
+  const logs = `${chalk.blue.inverse('<< JSDK Compiler >>')}\n${chalk.red(
+    errorMsg
+  )}\n`
+
+  const commands = {
+    compile: [
+      {
+        title: 'compile commands',
+        list: [
+          `jsdk --compile file=<FILE_NAME>`,
+          `jsdk --c file=<FILE_NAME>`,
+          `jsdk --compile folder=<FOLDER_NAME>`,
+          `jsdk --c folder=<FOLDER_NAME>`,
+        ],
+      },
+      {
+        title: 'compile commands with path',
+        list: [
+          `jsdk --compile file=<FILE_NAME> path=<FILE_PATH>`,
+          `jsdk --c file=<FILE_NAME> path=<FILE_PATH>`,
+          `jsdk --compile folder=<FOLDER_NAME> path=<FOLDER_PATH>`,
+          `jsdk --c folder=<FOLDER_NAME> path=<FOLDER_PATH>`,
+        ],
+      },
+    ],
   }
 
-  const msg =
-    logs +
-    (taskType === 'all'
-      ? examples.create + examples.bundle + examples.zip
-      : examples[taskType])
+  const getMsg = () => {
+    let cmdString = ``
+    Object.entries(commands).forEach(data => {
+      const [, commandList = []] = data
 
-  const view = boxen(msg, {
+      commandList.forEach(({ title, list }) => {
+        cmdString += chalk.grey(`## ${title}\n`)
+        cmdString += list
+          .map(cmd => {
+            const [cli, action, ...params] = cmd.split(' ')
+            return `${chalk.yellow(cli)} ${chalk.whiteBright(
+              action
+            )} ${chalk.green(params.join(' '))}\n`
+          })
+          .join('')
+        cmdString += `\n`
+      })
+    })
+    return cmdString
+  }
+
+  const view = boxen(logs + getMsg(), {
     borderColor: 'red',
     padding: 1,
     borderStyle: 'classic',
   })
+
   console.log(view)
 }
 
