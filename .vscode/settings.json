@@ -9,6 +9,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": false
   },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
   "css.validate": false,
   "scss.validate": true,
   "javascript.validate.enable": false,
