@@ -61,12 +61,12 @@ const validate = () => {
   return true
 }
 
-console.log({ task })
+console.log({ options })
 
 if (task === 'help' || task === '') {
   printHelpLog()
 } else if (task === 'examples') {
-  printExampleLog('all')
+  printExampleLog(taskFor || 'all')
 } else if (task === 'bundle') {
   if (validate() === true) {
     bundleNow(options)
