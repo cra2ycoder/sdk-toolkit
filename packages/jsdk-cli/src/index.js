@@ -8,14 +8,14 @@ const commands = {
   '--examples': Boolean,
   '--create': Boolean,
   '--bundle': Boolean,
-  '--zip': Boolean,
+  // '--zip': Boolean,
   '--path': String,
   '--yes': Boolean,
 
   // alias
   '-c': '--create',
   '-b': '--bundle',
-  '-z': '--zip',
+  // '-z': '--zip',
   '-y': '--yes',
 }
 
@@ -49,17 +49,17 @@ const getTaskType = args => {
 }
 
 const parseArgs = rawArgs => {
-  const options = arg(commands, {
+  const opt = arg(commands, {
     argv: rawArgs.slice(2),
   })
 
-  console.log({ options })
+  console.log({ opt })
 
   return {
-    skipPrompt: options['--yes'] || false,
-    task: getTaskType(options),
-    path: options['--path'] || '',
-    ...getTaskFor(options._[0]),
+    skipPrompt: opt['--yes'] || false,
+    task: getTaskType(opt),
+    path: opt['--path'] || '',
+    ...getTaskFor(opt._[0]),
   }
 }
 
@@ -83,6 +83,8 @@ const validate = () => {
   }
   return true
 }
+
+console.log({ task })
 
 if (task === 'help' || task === '') {
   printHelpLog()
