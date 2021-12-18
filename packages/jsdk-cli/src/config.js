@@ -3,8 +3,9 @@ const DESC = 'A modern way to compile jsdk.'
 
 const HELP = [
   '--help:shows help',
-  '--compile:helps to compile file into jsdk',
   '--examples:shows sample commands',
+  '--compile:helps to compile file and preview',
+  '--bundle:helps to bundle the files',
 ]
 
 const COMMANDS = {
