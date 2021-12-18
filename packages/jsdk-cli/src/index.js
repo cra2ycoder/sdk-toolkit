@@ -5,16 +5,16 @@ const { bundleNow } = require('./bundle')
 const { compileNow } = require('./compile')
 
 const getTaskFor = value => {
-  let [name, inputs] = value ? value.split('=').filter(Boolean) : ['', '']
+  let [name, userInputs] = value ? value.split('=').filter(Boolean) : ['', '']
 
   /**
    * @note
-   * converting the multiple inputs as array list
+   * converting the multiple userInputs as array list
    */
-  if (inputs !== undefined && inputs.includes(',') === true) {
-    inputs = inputs.split(',').filter(Boolean)
+  if (userInputs !== undefined && userInputs.includes(',') === true) {
+    userInputs = userInputs.split(',').filter(Boolean)
   }
-  return { taskFor: name, inputs }
+  return { taskFor: name, inputs: userInputs }
 }
 
 const getTaskType = args => {
