@@ -9,14 +9,16 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {},
-  "dependencies": {
+  "scripts": {
+    "preinstall": "npm install --global rollup"
+  },
+  "dependencies": {},
+  "devDependencies": {
     "arg": "4.1.3",
     "chalk": "4.1.0",
     "inquirer": "7.2.0",
     "ora": "4.0.4",
     "boxen": "4.2.0",
     "@xb/node-utils": "1.0.0"
-  },
-  "devDependencies": {}
+  }
 }
