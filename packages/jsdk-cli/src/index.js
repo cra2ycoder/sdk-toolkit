@@ -1,8 +1,8 @@
 const arg = require('arg')
 const { COMMANDS, ALIAS, PARAMS } = require('./config')
 const { printHelpLog, printErrorLog, printExampleLog } = require('./console')
-const { bundleNow } = require('./bundle')
-const { compileNow } = require('./compile')
+const { bundleNow } = require('../rollup/bundle')
+const { compileNow } = require('../rollup/compile')
 
 const getTaskFor = value => {
   let [name, userInputs] = value ? value.split('=').filter(Boolean) : ['', '']
