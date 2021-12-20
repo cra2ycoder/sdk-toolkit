@@ -26,11 +26,14 @@ const getTaskType = args => {
 }
 
 const parseArgs = rawArgs => {
-  const opt = arg(COMMANDS, {
-    argv: rawArgs.slice(2),
-  })
+  const opt = arg(
+    { ...COMMANDS, ...ALIAS },
+    {
+      argv: rawArgs.slice(2),
+    }
+  )
 
-  // console.log({ opt })
+  console.log({ opt })
 
   return {
     skipPrompt: opt['--yes'] || false,
