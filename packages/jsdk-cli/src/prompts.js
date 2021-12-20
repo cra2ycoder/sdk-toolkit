@@ -10,45 +10,27 @@ const validateName = input => {
   return true
 }
 
-const getCreateProjectConfig = async () => {
+const getRollupConfig = async props => {
+  const { inputs } = props
+
   const questions = [
     {
       type: 'list',
       name: 'type',
-      message: 'Please choose your project type?',
-      choices: ['Only Studio', 'Non Studio', 'Hybrid', 'JSDK'],
-      default: 'hybrid',
+      message: 'Please choose file format:',
+      choices: ['es', 'amd', 'cjs', 'iife', 'umd', 'system'],
+      default: 'iife',
     },
-  ]
-  return await inquirer.prompt(questions)
-}
-
-const getCreateWidgetConfig = async () => {
-  const questions = [
     {
-      type: 'input',
-      name: 'type',
-      message: 'Please enter your widget name?',
-      validate: validateName,
-    },
-  ]
-  return await inquirer.prompt(questions)
-}
-
-const getCreateComponentConfig = async () => {
-  const questions = [
-    {
-      type: 'input',
-      name: 'type',
-      message: 'Please enter your component name?',
-      validate: validateName,
+      type: 'string',
+      name: 'bundleName',
+      message: 'Please enter file name:',
+      default: inputs,
     },
   ]
   return await inquirer.prompt(questions)
 }
 
 module.exports = {
-  getCreateProjectConfig,
-  getCreateWidgetConfig,
-  getCreateComponentConfig,
+  getRollupConfig,
 }
