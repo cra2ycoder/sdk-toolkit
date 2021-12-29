@@ -27,13 +27,12 @@ const getTaskType = args => {
 
 const parseArgs = rawArgs => {
   const opt = arg(
-    { ...COMMANDS, ...ALIAS },
+    { ...COMMANDS, ...PARAMS, ...ALIAS },
     {
       argv: rawArgs.slice(2),
+      permissive: true,
     }
   )
-
-  console.log({ opt })
 
   return {
     skipPrompt: opt['--yes'] || false,
@@ -44,6 +43,7 @@ const parseArgs = rawArgs => {
 }
 
 const options = parseArgs(process.argv)
+console.log({ options })
 
 const {
   skipPrompt = false,
@@ -64,8 +64,6 @@ const validate = () => {
   }
   return true
 }
-
-// console.log({ options })
 
 if (task === 'help' || task === '') {
   printHelpLog()
