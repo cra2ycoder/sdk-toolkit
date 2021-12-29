@@ -10,8 +10,11 @@ const validateName = input => {
   return true
 }
 
+const getFileName = filePath => filePath.split('/').pop().split('.')[0]
+
 const getRollupConfig = async props => {
   const { inputs } = props
+  const fileName = getFileName(inputs)
 
   const questions = [
     {
@@ -25,7 +28,7 @@ const getRollupConfig = async props => {
       type: 'string',
       name: 'bundleName',
       message: 'Please enter file name:',
-      default: inputs,
+      default: fileName,
     },
   ]
   return await inquirer.prompt(questions)
@@ -33,4 +36,5 @@ const getRollupConfig = async props => {
 
 module.exports = {
   getRollupConfig,
+  getFileName,
 }
