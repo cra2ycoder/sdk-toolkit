@@ -14,12 +14,15 @@ const COMMANDS = {
   '--examples': Boolean,
   '--compile': Boolean,
   '--bundle': Boolean,
+  '--yes': Boolean,
 }
 
 const ALIAS = {
   // alias
   '-c': '--compile',
   '-b': '--bundle',
+  '-y': '--yes',
+  '-p': '--path',
 }
 
 const PARAMS = {
@@ -31,19 +34,18 @@ const SCRIPTS = {
     {
       title: 'compile commands',
       list: [
-        `jsdk --compile file=<FILE_NAME>`,
-        `jsdk --c file=<FILE_NAME>`,
+        `jsdk --compile file=<fileName | fileName.js | fileName.ts | fileName.tsx | fileName.jsx>`,
+        `jsdk --c file=<fileName | fileName.js | fileName.ts | fileName.tsx | fileName.jsx>`,
         `jsdk --compile folder=<FOLDER_NAME>`,
-        `jsdk --c folder=<FOLDER_NAME>`,
       ],
     },
     {
       title: 'compile commands with path',
       list: [
-        `jsdk --compile file=<FILE_NAME> path=<FILE_PATH>`,
-        `jsdk --c file=<FILE_NAME> path=<FILE_PATH>`,
-        `jsdk --compile folder=<FOLDER_NAME> path=<FOLDER_PATH>`,
-        `jsdk --c folder=<FOLDER_NAME> path=<FOLDER_PATH>`,
+        `jsdk --compile file=./path/<FILE_NAME>`,
+        `jsdk --c file=./path/<FILE_NAME>`,
+        `jsdk --compile folder=./path/<FOLDER_NAME>`,
+        `jsdk --c folder=./path/<FOLDER_NAME>`,
       ],
     },
   ],
