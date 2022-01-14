@@ -30,6 +30,13 @@ const getRollupConfig = async props => {
       message: 'Please enter file name:',
       default: fileName,
     },
+    {
+      type: 'list',
+      name: 'compressionType',
+      message: 'Please choose your file compression type:',
+      choices: ['gzip', 'brotli'],
+      default: 'gzip',
+    },
   ]
   return await inquirer.prompt(questions)
 }
