@@ -8,6 +8,12 @@
 npm install --global rollup
 ```
 
+- if you are using `typescript` then
+  
+```s
+npm install -g typescript
+```
+
 ```s
 # with prompts
 jsdk -c file=./jsdk/main.js
@@ -17,11 +23,15 @@ jsdk -c file=./jsdk/main.js -y
 ```
 
 
-### issues/cautions
+### cautions
 
 - caution: make sure with the file path that we sharing to the rollup entry/input point
 - caution: your file path location should not contain any spaces since rollup has parsing error
 `[!]Error: Could not resolve entry module`
+
+### issues
+
+- [ ] path issue is still there, need to find alternate way to fix the same `@jsdk-cli/rollup/compile.js => @todo`
 
 #### TODO
 
