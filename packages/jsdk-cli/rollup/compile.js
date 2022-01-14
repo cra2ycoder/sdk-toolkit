@@ -3,13 +3,12 @@ const { runRollup } = require('@xb/node-utils')
 const { getRollupConfig, getFileName } = require('../src/prompts')
 
 const compileNow = async options => {
-
   /**
    * @description
    * default configuration
    */
   let value = {
-    type: 'iife',
+    format: 'iife',
     compressionType: 'gzip',
     fileName: getFileName(options.inputs),
     fileLocation: path.resolve('../../', options.inputs),

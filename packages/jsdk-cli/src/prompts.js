@@ -19,14 +19,14 @@ const getRollupConfig = async props => {
   const questions = [
     {
       type: 'list',
-      name: 'type',
+      name: 'format',
       message: 'Please choose file format:',
       choices: ['es', 'amd', 'cjs', 'iife', 'umd', 'system'],
       default: 'iife',
     },
     {
       type: 'string',
-      name: 'bundleName',
+      name: 'fileName',
       message: 'Please enter file name:',
       default: fileName,
     },
