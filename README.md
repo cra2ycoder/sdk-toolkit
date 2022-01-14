@@ -19,7 +19,9 @@ jsdk -c file=./jsdk/main.js -y
 
 ### issues/cautions
 
-- make sure with the file path that we sharing to the rollup entry/input point
+- caution: make sure with the file path that we sharing to the rollup entry/input point
+- caution: your file path location should not contain any spaces since rollup has parsing error
+`[!]Error: Could not resolve entry module`
 
 #### TODO
 
