@@ -1,24 +1,28 @@
+const path = require('path')
 const { runRollup } = require('@xb/node-utils')
 const { getRollupConfig, getFileName } = require('../src/prompts')
 
-// console.log(require('@xb/node-utils'))
+const compileNow = async options => {
 
-const compileNow = options => {
-  // console.log({ options })
+  /**
+   * @description
+   * default configuration
+   */
   let value = {
     type: 'iife',
+    compressionType: 'gzip',
     fileName: getFileName(options.inputs),
+    fileLocation: path.resolve('../../', options.inputs),
   }
 
   if (options.skipPrompt === false) {
-    value = getRollupConfig(options)
+    value = {
+      ...value,
+      ...(await getRollupConfig(options)),
+    }
   }
 
-  console.log(runRollup)
-
-  // runRollup('./rollup.config.js', {})
-
-  console.log({ value })
+  runRollup(path.resolve(__dirname, './rollup.config.js'), value)
 }
 
 module.exports = {
