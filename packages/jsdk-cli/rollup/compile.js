@@ -1,5 +1,5 @@
 const path = require('path')
-const { runRollup } = require('@xb/node-utils')
+const { run } = require('@xb/node-utils')
 const { getRollupConfig, getFileName } = require('../src/prompts')
 
 const compileNow = async options => {
@@ -11,7 +11,12 @@ const compileNow = async options => {
     format: 'iife',
     compressionType: 'gzip',
     fileName: getFileName(options.inputs),
-    fileLocation: path.resolve('../../', options.inputs),
+
+    /**
+     * @todo
+     * path - suffering here, this needs to be fixed
+     */
+    fileLocation: path.resolve(options.inputs),
   }
 
   if (options.skipPrompt === false) {
@@ -21,7 +26,28 @@ const compileNow = async options => {
     }
   }
 
-  runRollup(path.resolve(__dirname, './rollup.config.js'), value)
+  const isTypescriptConfig = true
+
+  if (isTypescriptConfig === true) {
+    /**
+     * for ts configuration
+     */
+    run(
+      `rollup -c ${path.resolve(
+        __dirname,
+        './rollup.config.ts'
+      )} --configPlugin typescript`,
+      value
+    )
+  } else {
+    /**
+     * @note
+     * for js configuration
+     */
+    run(`rollup -c ${path.resolve(__dirname, './rollup.config.js')}`, value)
+  }
+
+  // runRollup(, value)
 }
 
 module.exports = {
