@@ -1,6 +1,7 @@
-const path = require('path')
-const { nodeResolve } = require('@rollup/plugin-node-resolve')
-const typescript = require('@rollup/plugin-typescript')
+import nodeResolve from '@rollup/plugin-node-resolve'
+import typescript from '@rollup/plugin-typescript'
+
+console.log({ typescript })
 
 /**
  * @description
@@ -17,5 +18,5 @@ export default {
     file: `${outputFileLocation}/${outputFileName}`,
     format,
   },
-  plugins: [nodeResolve(), typescript()],
+  plugins: [nodeResolve(), typescript({ tsconfig: './tsconfig.json' })],
 }
