@@ -27,13 +27,9 @@ const compileNow = async options => {
   }
 
   const isTypescriptConfig = true
-  run(
-    `rollup -c ${path.resolve(
-      __dirname,
-      `./rollup.config.${isTypescriptConfig ? 'ts' : 'js'}`
-    )}`,
-    value
-  )
+  const configPath = `./rollup.config.${isTypescriptConfig ? 'ts' : 'js'}`
+
+  run(`rollup -c ${path.resolve(__dirname, configPath)}`, value)
 }
 
 module.exports = {
